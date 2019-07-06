@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="th.midiGlide">
+
+	<digest>
+		Glide between midi notes for mono synths
+	</digest>
+
+	<description>
+		Takes midi note on/off messages and stores the played note. When a new note is played before note-off from previous note is arrived, the pitch will glide to the new note (portamento).
+	</description>
+
+	<!--METADATA-->
+	<metadatalist>
+		<metadata name="author">Timo Hoogland</metadata>
+		<metadata name="tag">thModules</metadata>
+		<metadata name="tag">midi</metadata>
+		<metadata name="tag">synth</metadata>
+		<metadata name="tag">monophonic</metadata>
+	</metadatalist>
+
+	<!--INLETS-->
+	<inletlist>
+		<inlet id="0" type="list">
+			<digest>Note on/off messages to glide</digest>
+		</inlet>
+	</inletlist>
+
+	<!--OUTLETS-->
+	<outletlist>
+		<outlet id="0" type="int">
+			<digest>midi velocity</digest>
+		</outlet>
+		<outlet id="1" type="int">
+			<digest>midi pitch in floating-point</digest>
+		</outlet>
+	</outletlist>
+
+	<!--ARGUMENTS-->
+	<objarglist>
+		<objarg name="glidetime" optional="1" type="int/float" units="ms">
+			<digest>
+				the time to glide towards the new pitch in ms (default = 5)
+			</digest>
+			<description>
+				the time to glide towards the new pitch in ms (default = 5)
+			</description>
+		</objarg>
+	</objarglist>
+
+	<!--MESSAGES-->
+	<methodlist>
+		<method name="list">
+			<arglist>
+				<arg name="note-on/off" optional="0" type="list" />
+			</arglist>
+			<digest>
+				Midi note on/off message (pitch, velocity)
+			</digest>
+			<description>
+				Input a pitch velocity pair to store and play with portamento.
+			</description>
+		</method>
+		<method name="flush">
+			<arglist>
+				<arg name="flush" optional="0" type="float" />
+			</arglist>
+			<digest>
+				Flush when midi note is stuck.
+			</digest>
+			<description>
+				Flush when midi note is stuck.
+			</description>
+		</method>
+	</methodlist>
+
+	<!--ATTRIBUTES-->
+	<!-- <attributelist>
+		<attribute name='flush' get='0' set='1' type='message' size='1' >
+			<digest>Flush is midi note is stuck</digest>
+			<description>Flush is midi note is stuck</description>
+		</attribute>
+	</attributelist> -->
+
+	<!--SEEALSO-->
+	<seealsolist>
+		<seealso name="borax"/>
+		<seealso name="bag"/>
+		<seealso name="funbuff"/>
+		<seealso name="zl.group"/>
+		<seealso name="adsr~"/>
+		<seealso name="saw~"/>
+		<seealso name="kslider"/>
+		<seealso name="line"/>
+		<seealso name="unjoin"/>
+	</seealsolist>
+
+</c74object>
